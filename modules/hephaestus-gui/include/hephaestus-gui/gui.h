@@ -1,0 +1,14 @@
+#pragma once
+
+////////////////////////////////////////////////////////////////
+// Current target includes.
+////////////////////////////////////////////////////////////////
+
+#include "hephaestus-gui/dllexport.h"
+
+namespace hph::gui
+{
+    class HEPHAESTUS_GUI Gui
+    {
+    };
+}  // namespace hph::gui
