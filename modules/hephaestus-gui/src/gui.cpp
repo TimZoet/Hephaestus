@@ -1,5 +1,5 @@
 #include "hephaestus-gui/gui.h"
 
-namespace hph::gui
+namespace hph
 {
-}  // namespace hph::gui
+}  // namespace hph

@@ -6,9 +6,9 @@
 
 #include "hephaestus-gui/dllexport.h"
 
-namespace hph::gui
+namespace hph
 {
-    class HEPHAESTUS_GUI Gui
+    class HEPHAESTUS_GUI_API Gui
     {
     };
-}  // namespace hph::gui
+}  // namespace hph

@@ -29,10 +29,12 @@ include(MakeTarget)
 # Add subdirectories.
 ################################################################################
 
+add_subdirectory(applications)
 add_subdirectory(modules)
 if (BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
+add_subdirectory(plugins)
 if (BUILD_TESTS)
     add_subdirectory(tests)
 endif()

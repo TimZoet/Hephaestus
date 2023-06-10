@@ -1,8 +1,12 @@
+find_package(alexandria REQUIRED)
+
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/../hephaestus-version")
 include(hephaestusVersionString)
 
-set(NAME hephaestus-version)
+set(NAME hephaestus-settings)
 set(TYPE module)
-set(INCLUDE_DIR "include/hephaestus-version")
+set(LINKING)
+set(INCLUDE_DIR "include/hephaestus-settings")
 set(SRC_DIR "src")
 
 if (HEPHAESTUS_SHARED_LIBS)
@@ -11,17 +15,18 @@ endif()
 
 set(HEADERS
     ${INCLUDE_DIR}/dllexport.h
-    ${INCLUDE_DIR}/version.h
+    ${INCLUDE_DIR}/settings.h
 )
 
 set(SOURCES
-    ${SRC_DIR}/version.cpp
+    ${SRC_DIR}/settings.cpp
 )
 
 set(DEPS_PUBLIC
 )
 
 set(DEPS_PRIVATE
+    alexandria::alexandria
 )
 
 make_target(

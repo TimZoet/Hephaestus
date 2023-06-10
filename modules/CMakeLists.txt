@@ -1,2 +1,5 @@
 add_subdirectory(hephaestus-gui)
+add_subdirectory(hephaestus-plugin-api)
+add_subdirectory(hephaestus-plugin-loader)
+add_subdirectory(hephaestus-settings)
 add_subdirectory(hephaestus-version)

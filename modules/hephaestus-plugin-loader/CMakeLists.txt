@@ -1,8 +1,12 @@
+find_package(boost COMPONENTS dll REQUIRED)
+
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/../hephaestus-version")
 include(hephaestusVersionString)
 
-set(NAME hephaestus-version)
+set(NAME hephaestus-plugin-loader)
 set(TYPE module)
-set(INCLUDE_DIR "include/hephaestus-version")
+set(LINKING)
+set(INCLUDE_DIR "include/hephaestus-plugin-loader")
 set(SRC_DIR "src")
 
 if (HEPHAESTUS_SHARED_LIBS)
@@ -11,17 +15,21 @@ endif()
 
 set(HEADERS
     ${INCLUDE_DIR}/dllexport.h
-    ${INCLUDE_DIR}/version.h
+    ${INCLUDE_DIR}/plugin.h
+    ${INCLUDE_DIR}/plugin_loader.h
 )
 
 set(SOURCES
-    ${SRC_DIR}/version.cpp
+    ${SRC_DIR}/plugin.cpp
+    ${SRC_DIR}/plugin_loader.cpp
 )
 
 set(DEPS_PUBLIC
+    hephaestus-plugin-api
 )
 
 set(DEPS_PRIVATE
+    boost::boost
 )
 
 make_target(

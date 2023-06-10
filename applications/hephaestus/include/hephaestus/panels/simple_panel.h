@@ -1,0 +1,93 @@
+#pragma once
+
+////////////////////////////////////////////////////////////////
+// Module includes.
+////////////////////////////////////////////////////////////////
+
+#include "floah-widget/panel.h"
+#include "sol/mesh/fwd.h"
+
+////////////////////////////////////////////////////////////////
+// Current target includes.
+////////////////////////////////////////////////////////////////
+
+#include "hephaestus/models/global_model.h"
+
+class SimplePanel : public floah::Panel
+{
+public:
+    ////////////////////////////////////////////////////////////////
+    // Constructors.
+    ////////////////////////////////////////////////////////////////
+
+    SimplePanel() = delete;
+
+    SimplePanel(floah::InputContext& context);
+
+    SimplePanel(const SimplePanel&) = default;
+
+    SimplePanel(SimplePanel&&) noexcept = default;
+
+    ~SimplePanel() noexcept override;
+
+    SimplePanel& operator=(const SimplePanel&) = default;
+
+    SimplePanel& operator=(SimplePanel&&) noexcept = default;
+
+    ////////////////////////////////////////////////////////////////
+    // Getters.
+    ////////////////////////////////////////////////////////////////
+
+    [[nodiscard]] sol::Node* getPanelNode() noexcept override;
+
+    [[nodiscard]] const sol::Node* getPanelNode() const noexcept override;
+
+    ////////////////////////////////////////////////////////////////
+    // Init.
+    ////////////////////////////////////////////////////////////////
+
+    void initialize(int32_t xoffset, int32_t yoffset, int32_t width, int32_t height, const GlobalModel& model);
+
+    ////////////////////////////////////////////////////////////////
+    // Generate.
+    ////////////////////////////////////////////////////////////////
+
+    void generateGeometry(sol::MeshManager& meshManager, floah::FontMap& fontMap) override;
+
+    void generateScenegraph(floah::IScenegraphGenerator& generator) override;
+
+    ////////////////////////////////////////////////////////////////
+    // Input.
+    ////////////////////////////////////////////////////////////////
+
+    [[nodiscard]] math::int2 getInputOffset() const noexcept override;
+
+    [[nodiscard]] floah::InputContext::MouseClickResult onMouseClick(const floah::InputContext::MouseClickEvent& click) override;
+
+private:
+    ////////////////////////////////////////////////////////////////
+    // Stylesheet getters.
+    ////////////////////////////////////////////////////////////////
+
+    [[nodiscard]] sol::ForwardMaterialInstance* getPanelMaterial() const noexcept;
+
+    ////////////////////////////////////////////////////////////////
+    // Member variables.
+    ////////////////////////////////////////////////////////////////
+
+    math::int2 offset;
+
+    struct
+    {
+        sol::IMesh* background = nullptr;
+
+        sol::IMesh* outline = nullptr;
+    } meshes;
+
+    struct
+    {
+        sol::Node* root = nullptr;
+
+        floah::ITransformNode* widgetRootNode = nullptr;
+    } nodes;
+};
